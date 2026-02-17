@@ -1,0 +1,14 @@
+[Unit]
+Description=Python Telegram Klingel
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/Documents/TelegramKlingel/
+ExecStart=/home/pi/Documents/TelegramKlingel/venv/bin/python klingel.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

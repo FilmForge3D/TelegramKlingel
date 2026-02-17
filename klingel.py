@@ -5,9 +5,12 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 import random
 import vlc
 
-instance = vlc.Instance('--aout=alsa','--alsa-audio-device=plughw:1,0','--no-video')
-player = instance.media_player_new()
-vlc.libvlc_audio_set_volume(player, 100)
+instance0 = vlc.Instance('--aout=alsa','--alsa-audio-device=plughw:0,0','--no-video')
+player0 = instance0.media_player_new()
+vlc.libvlc_audio_set_volume(player0, 100)
+instance1 = vlc.Instance('--aout=alsa','--alsa-audio-device=plughw:1,0','--no-video')
+player1 = instance1.media_player_new()
+vlc.libvlc_audio_set_volume(player1, 100)
 
 with open('token.txt', 'r') as file:
     TOKEN = file.read()
@@ -31,9 +34,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def klingel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Wählt eine Zufällige Klingel aus und spielt diese ab, nach dem Klingeln wird der Befehl gelöscht"""
     audiofile = random.choice(soundfiles)
-    media = instance.media_new(audiofile) 
-    player.set_media(media)
-    player.play() 
+    media0 = instance0.media_new(audiofile) 
+    player0.set_media(media0)
+    player0.play()
+    media1 = instance1.media_new(audiofile) 
+    player1.set_media(media1)
+    player1.play() 
     await context.bot.delete_message(chat_id=update.message.chat_id,message_id=update.message.message_id)
 
 def main() -> None:
