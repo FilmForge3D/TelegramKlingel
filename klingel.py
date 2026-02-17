@@ -2,9 +2,12 @@
 # pylint: disable=unused-argument
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
-from pydub import AudioSegment
-from pydub.playback import play
 import random
+import vlc
+
+instance = vlc.Instance('--aout=alsa','--alsa-audio-device=plughw:1,0','--no-video')
+player = instance.media_player_new()
+vlc.libvlc_audio_set_volume(player, 100)
 
 with open('token.txt', 'r') as file:
     TOKEN = file.read()
@@ -28,8 +31,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def klingel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Wählt eine Zufällige Klingel aus und spielt diese ab, nach dem Klingeln wird der Befehl gelöscht"""
     audiofile = random.choice(soundfiles)
-    sound = AudioSegment.from_mp3(audiofile)
-    play(sound)
+    media = instance.media_new(audiofile) 
+    player.set_media(media)
+    player.play() 
     await context.bot.delete_message(chat_id=update.message.chat_id,message_id=update.message.message_id)
 
 def main() -> None:
