@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=pi
 WorkingDirectory=/home/pi/Documents/TelegramKlingel/
-ExecStart=/home/pi/Documents/TelegramKlingel/venv/bin/python klingel.py
+ExecStart=/home/pi/Documents/TelegramKlingel/venv/bin/python startup.py
 Restart=on-failure
 RestartSec=5
 
