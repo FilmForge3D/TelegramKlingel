@@ -15,16 +15,20 @@ vlc.libvlc_audio_set_volume(player1, 100)
 with open('token.txt', 'r') as file:
     TOKEN = file.read()
 
-soundfiles = ["Audio/Klingel1.mp3",
-              "Audio/Klingel2.mp3",
-              "Audio/Klingel3.mp3",
-              "Audio/Klingel4.mp3",
-              "Audio/Klingel5.mp3",
-              "Audio/Klingel6.mp3",
-              "Audio/Klingel7.mp3",
-              "Audio/Klingel8.mp3",
-              "Audio/Klingel9.mp3",
-              "Audio/Klingel10.mp3"]
+soundfiles = ["Audio/Klingel01.mp3",
+              "Audio/Klingel02.mp3",
+              "Audio/Klingel03.mp3",
+              "Audio/Klingel04.mp3",
+              "Audio/Klingel05.mp3",
+              "Audio/Klingel06.mp3",
+              "Audio/Klingel07.mp3",
+              "Audio/Klingel08.mp3",
+              "Audio/Klingel09.mp3",
+              "Audio/Klingel10.mp3",
+              "Audio/Klingel11.mp3",
+              "Audio/Klingel12.mp3",
+              "Audio/Klingel13.mp3",
+              "Audio/Klingel14.mp3"]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Erklärt die Funktion des Bots"""
